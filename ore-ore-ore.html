@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORE-ORE-ORE E-commerce Specification | ATWWW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0e0e0e;
+      --bg-darker: #080808;
+      --bg-card: #121212;
+      --text-primary: #ffffff;
+      --text-secondary: #999999;
+      --text-tertiary: #666666;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent-color: rgba(255, 255, 255, 0.2);
+      --highlight: #ffffff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    header {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    
+    .tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    
+    .hero {
+      padding: 120px 0 80px;
+      text-align: left;
+      background-color: var(--bg-darker);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%);
+      margin-bottom: 80px;
+    }
+    
+    .hero-title {
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    
+    .section {
+      margin-bottom: 80px;
+    }
+    
+    h2 {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--accent-color);
+    }
+    
+    h3 {
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      margin: 32px 0 24px;
+      color: var(--highlight);
+    }
+    
+    h4 {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin: 24px 0 16px;
+      color: var(--text-primary);
+    }
+    
+    p {
+      margin-bottom: 16px;
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+    
+    ul, ol {
+      margin: 16px 0 24px 24px;
+      color: var(--text-secondary);
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    .card {
+      background-color: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      padding: 32px;
+      margin-bottom: 32px;
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+    }
+    
+    .card-title {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--highlight);
+    }
+    
+    .table-container {
+      overflow-x: auto;
+      margin: 32px 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+    
+    th {
+      text-align: left;
+      font-weight: 400;
+      letter-spacing: 1px;
+      padding: 16px;
+      border-bottom: 1px solid var(--accent-color);
+      color: var(--highlight);
+    }
+    
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+    
+    .feature-support {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .support-full {
+      color: #4caf50;
+    }
+    
+    .support-partial {
+      color: #ff9800;
+    }
+    
+    .support-none {
+      color: #f44336;
+    }
+    
+    .timeline {
+      margin: 32px 0;
+    }
+    
+    .timeline-item {
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 32px;
+    }
+    
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background-color: var(--highlight);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%);
+    }
+    
+    .timeline-item:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 24px;
+      bottom: -16px;
+      width: 1px;
+      background-color: var(--accent-color);
+    }
+    
+    .timeline-item:last-child:after {
+      display: none;
+    }
+    
+    .timeline-title {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--highlight);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border-color);
+      margin-top: 80px;
+    }
+    
+    .copyright {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      letter-spacing: 2px;
+    }
+    
+    /* Pricing options styles */
+    .pricing-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 32px 0;
+    }
+    
+    @media (max-width: 768px) {
+      .pricing-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero {
+        padding: 80px 0 60px;
+      }
+      
+      .hero-title {
+        font-size: 36px;
+      }
+    }
+    
+    .pricing-option {
+      background-color: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      padding: 32px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+    }
+    
+    .pricing-title {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--highlight);
+    }
+    
+    .pricing-cost {
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: var(--text-secondary);
+    }
+    
+    .pricing-component {
+      margin-top: 16px;
+    }
+    
+    .pricing-component-title {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--highlight);
+      margin-bottom: 8px;
+    }
+
+    /* Custom development styles */
+    .custom-dev-item {
+      margin-bottom: 32px;
+    }
+    
+    .custom-dev-title {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: var(--highlight);
+    }
+    
+    .custom-dev-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .custom-dev-meta-item {
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+    
+    .custom-dev-meta-item strong {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      h2 {
+        font-size: 28px;
+      }
+      
+      h3 {
+        font-size: 22px;
+      }
+      
+      .card, .pricing-option {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">ATWWW®</div>
+      <div class="tagline">THE ARTISAN OF TOMORROW</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">E-commerce Specification<br>for ORE-ORE-ORE Store</h1>
+        <p class="hero-subtitle">Technical implementation specification for a next-generation e-commerce platform using Medusa.js and Next.js with a distinct 00's aesthetic.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="section" id="project-overview">
+        <h2>1. Project Overview</h2>
+        <div class="card">
+          <p><strong>Project Goal:</strong> Implement the complete ORE-ORE-ORE e-commerce website design using Medusa.js as the backend and Next.js for the frontend.</p>
+          <p><strong>Design Style:</strong> 00's aesthetic with simpler layouts and focused functionality</p>
+          <p><strong>Budget Estimate:</strong> $9,000 for development (excluding project management)</p>
+          <p><strong>Timeline:</strong> 8-10 weeks for complete implementation (compressed schedule)</p>
+        </div>
+      </section>
+
+      <section class="section" id="technology-stack">
+        <h2>2. Technology Stack & Hosting Options</h2>
+        
+        <h3>2.1 Core Technologies</h3>
+        <ul>
+          <li><strong>Backend:</strong> Medusa.js e-commerce platform</li>
+          <li><strong>Frontend:</strong> Next.js React framework</li>
+          <li><strong>Database:</strong> PostgreSQL</li>
+          <li><strong>Image Hosting:</strong> Cloudinary or AWS S3</li>
+          <li><strong>Payment Processing:</strong> Stripe (primary), PayPal and Bank Transfer (secondary)</li>
+          <li><strong>Email Service:</strong> SendGrid or similar for order notifications</li>
+          <li><strong>Authentication:</strong> Custom integration with Google OAuth</li>
+        </ul>
+
+        <h3>2.2 Hosting Options</h3>
+        
+        <div class="pricing-options">
+          <div class="pricing-option">
+            <h4 class="pricing-title">Option 1: Startup Configuration</h4>
+            <div class="pricing-cost"><strong>Monthly Cost:</strong> $50-100</div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Frontend Hosting: Vercel Pro Plan ($20/month)</h5>
+              <ul>
+                <li>Global CDN, automatic scaling</li>
+                <li>Handles ~250,000 monthly visitors</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Backend Service: Basic Cloud Server ($10-20/month)</h5>
+              <ul>
+                <li>2GB RAM/1 vCPU configuration</li>
+                <li>Suitable for initial traffic (up to ~100 orders/day)</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Database: Managed PostgreSQL ($15/month)</h5>
+              <ul>
+                <li>1GB RAM, 10GB storage</li>
+                <li>Automated backups</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Image Storage: Cloudinary Free/Basic Tier ($0-10/month)</h5>
+              <ul>
+                <li>Up to 25GB storage and bandwidth</li>
+                <li>Image optimization included</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="pricing-option">
+            <h4 class="pricing-title">Option 2: Enterprise Configuration</h4>
+            <div class="pricing-cost"><strong>Monthly Cost:</strong> $300-500</div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Frontend Hosting: Enhanced Vercel Plan ($40-80/month)</h5>
+              <ul>
+                <li>Handles millions of visitors</li>
+                <li>Priority support, advanced analytics</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Backend Service: Scaled Cloud Infrastructure ($100-150/month)</h5>
+              <ul>
+                <li>8GB+ RAM, multiple CPUs</li>
+                <li>Load balancing, high availability</li>
+                <li>Handles 1000+ orders/day</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Database: Performance-optimized PostgreSQL ($50-100/month)</h5>
+              <ul>
+                <li>4GB+ RAM, 100GB+ storage</li>
+                <li>Read replicas, enhanced performance</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Image Storage: Enterprise CDN ($50-100/month)</h5>
+              <ul>
+                <li>Unlimited storage</li>
+                <li>Global edge caching</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-component">
+              <h5 class="pricing-component-title">Monitoring & Security: Advanced Tools ($50/month)</h5>
+              <ul>
+                <li>Real-time performance monitoring</li>
+                <li>Enhanced security protections</li>
+                <li>Automated scaling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="custom-development">
+        <h2>3. Custom Development Requirements</h2>
+        <h3>3.1 Features Requiring Custom Implementation</h3>
+        
+        <div class="custom-dev-item">
+          <h4 class="custom-dev-title">1. Wishlist/Favorites System</h4>
+          <div class="custom-dev-meta">
+            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not supported by Medusa core</div>
+            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
+          </div>
+          <p>Custom database model, API endpoints, and frontend components</p>
+        </div>
+        
+        <div class="custom-dev-item">
+          <h4 class="custom-dev-title">2. Social Authentication (Google)</h4>
+          <div class="custom-dev-meta">
+            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not included in Medusa's authentication system</div>
+            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (8-12 hours)</div>
+          </div>
+          <p>Integration with NextAuth.js and Google OAuth</p>
+        </div>
+        
+        <div class="custom-dev-item">
+          <h4 class="custom-dev-title">3. 00's Style UI Implementation</h4>
+          <div class="custom-dev-meta">
+            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Specific to your design requirements</div>
+            <div class="custom-dev-meta-item"><strong>Complexity:</strong> High (40-50 hours)</div>
+          </div>
+          <p>Custom components and styling throughout the application</p>
+        </div>
+        
+        <div class="custom-dev-item">
+          <h4 class="custom-dev-title">4. Multi-language Structure</h4>
+          <div class="custom-dev-meta">
+            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Basic i18n support needs enhancement</div>
+            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (10-15 hours)</div>
+          </div>
+          <p>Extended translation system and language switcher</p>
+        </div>
+        
+        <div class="custom-dev-item">
+          <h4 class="custom-dev-title">5. Enhanced Product Variations UI</h4>
+          <div class="custom-dev-meta">
+            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Medusa's default UI doesn't match your design</div>
+            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
+          </div>
+          <p>Custom product variation selectors and display</p>
+        </div>
+      </section>
+
+      <section class="section" id="timeline">
+        <h2>4. Compressed Development Timeline</h2>
+        <p>Efficient 8-10 week implementation schedule</p>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4 class="timeline-title">Weeks 1-2: Setup & Foundation</h4>
+            <ul>
+              <li>Infrastructure setup (all hosting environments)</li>
+              <li>Medusa core installation and configuration</li>
+              <li>Next.js project initialization</li>
+              <li>Base component library creation</li>
+              <li>Database schema planning</li>
+            </ul>
+          </div>
+          
+          <div class="timeline-item">
+            <h4 class="timeline-title">Weeks 3-4: Core Pages</h4>
+            <ul>
+              <li>Homepage implementation</li>
+              <li>Product listing pages</li>
+              <li>Product detail page with variations</li>
+              <li>Basic navigation and layout</li>
+            </ul>
+          </div>
+          
+          <div class="timeline-item">
+            <h4 class="timeline-title">Weeks 5-6: User Journey & Payments</h4>
+            <ul>
+              <li>Cart functionality</li>
+              <li>Checkout process</li>
+              <li>Stripe integration</li>
+              <li>PayPal integration</li>
+              <li>Bank transfer option</li>
+              <li>User account pages</li>
+            </ul>
+          </div>
+          
+          <div class="timeline-item">
+            <h4 class="timeline-title">Weeks 7-8: Custom Features</h4>
+            <ul>
+              <li>Wishlist/favorites implementation</li>
+              <li>Google authentication</li>
+              <li>Email templates and notifications</li>
+              <li>Address management</li>
+              <li>Order history</li>
+            </ul>
+          </div>
+          
+          <div class="timeline-item">
+            <h4 class="timeline-title">Weeks 9-10: Testing & Deployment</h4>
+            <ul>
+              <li>Cross-browser testing</li>
+              <li>Mobile responsiveness verification</li>
+              <li>Payment flow testing</li>
+              <li>Performance optimization</li>
+              <li>Final deployment and launch preparation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="implementation-approach">
+        <h2>5. Medusa Core vs. Custom Implementation</h2>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Medusa Support</th>
+                <th>Implementation Approach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Product Management</td>
+                <td><span class="feature-support support-full">✅</span>Full Support</td>
+                <td>Use Medusa core</td>
+              </tr>
+              <tr>
+                <td>Order Processing</td>
+                <td><span class="feature-support support-full">✅</span>Full Support</td>
+                <td>Use Medusa core</td>
+              </tr>
+              <tr>
+                <td>Cart Management</td>
+                <td><span class="feature-support support-full">✅</span>Full Support</td>
+                <td>Use Medusa core</td>
+              </tr>
+              <tr>
+                <td>Customer Accounts</td>
+                <td><span class="feature-support support-full">✅</span>Full Support</td>
+                <td>Use Medusa core</td>
+              </tr>
+              <tr>
+                <td>Payment Processing</td>
+                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                <td>Use Medusa + custom UI</td>
+              </tr>
+              <tr>
+                <td>Shipping Options</td>
+                <td><span class="feature-support support-full">✅</span>Full Support</td>
+                <td>Use Medusa core</td>
+              </tr>
+              <tr>
+                <td>Product Variations</td>
+                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                <td>Use Medusa + custom UI</td>
+              </tr>
+              <tr>
+                <td>Email Notifications</td>
+                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                <td>Use Medusa + custom templates</td>
+              </tr>
+              <tr>
+                <td>Wishlist/Favorites</td>
+                <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                <td>Full custom implementation</td>
+              </tr>
+              <tr>
+                <td>Social Authentication</td>
+                <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                <td>Full custom implementation</td>
+              </tr>
+              <tr>
+                <td>Multi-language</td>
+                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                <td>Extend Medusa core</td>
+              </tr>
+              <tr>
+                <td>00's Style UI</td>
+                <td><span class="feature-support support-none">❌</span>Not Applicable</td>
+                <td>Full custom implementation</td>
+              </tr>
+              <tr>
+                <td>Product Search</td>
+                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                <td>Use Medusa + basic customization</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="recommended-focus">
+        <h2>6. Recommended Focus Areas</h2>
+        <p>To ensure successful implementation within the 8-10 week timeline:</p>
+        
+        <div class="card">
+          <h4 class="card-title">1. Early Infrastructure Setup</h4>
+          <ul>
+            <li>Complete hosting configuration in first week</li>
+            <li>Ensure development environments match production</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h4 class="card-title">2. Prioritize Core User Journey</h4>
+          <ul>
+            <li>Focus on product browsing → cart → checkout flow first</li>
+            <li>Ensure payment methods work flawlessly</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h4 class="card-title">3. Parallel Development Tracks</h4>
+          <ul>
+            <li>Frontend styling can progress alongside backend integration</li>
+            <li>Custom features can be developed in parallel with core pages</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h4 class="card-title">4. Weekly Progress Milestones</h4>
+          <ul>
+            <li>Set specific completion targets for each feature</li>
+            <li>Regular testing of completed components</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="copyright">© 2023 ATWWW® • THE ARTISAN OF TOMORROW</p>
+    </div>
+  </footer>
+</body>
+</html> 
