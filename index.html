@@ -532,6 +532,107 @@
         padding: 24px;
       }
     }
+
+    /* Tab Navigation Styles */
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+    }
+    
+    .tab-button {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      padding: 12px 24px;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .tab-button.active {
+      color: var(--highlight);
+    }
+    
+    .tab-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--highlight);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* Shopify-specific styles */
+    .shopify-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0;
+    }
+    
+    .shopify-feature-card {
+      background-color: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      padding: 24px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+    }
+    
+    .shopify-feature-title {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--highlight);
+    }
+    
+    .shopify-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .shopify-feature-list li {
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+    
+    .shopify-feature-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--highlight);
+    }
+    
+    @media (max-width: 768px) {
+      .shopify-feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tab-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .tab-button.active::after {
+        bottom: -16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -546,698 +647,16 @@
     <section class="hero">
       <div class="container">
         <h1 class="hero-title">E-commerce Specification<br>for ORE-ORE-ORE Store</h1>
-        <p class="hero-subtitle">Technical implementation specification for a next-generation e-commerce platform using Medusa.js and Next.js with a distinct 00's aesthetic.</p>
+        <p class="hero-subtitle">Technical implementation specification for a next-generation e-commerce platform with a distinct 00's aesthetic.</p>
       </div>
     </section>
 
     <div class="container">
-      <section class="section" id="project-overview">
-        <h2>1. Project Overview</h2>
-        <div class="card">
-          <p><strong>Project Goal:</strong> Implement the complete ORE-ORE-ORE e-commerce website design using Medusa.js as the backend and Next.js for the frontend.</p>
-          <p><strong>Design Style:</strong> 00's aesthetic with simpler layouts and focused functionality</p>
-          <p><strong>Budget Estimate:</strong> $9,000 for development</p>
-          <p><strong>Timeline:</strong> 8-10 weeks for complete implementation (compressed schedule)</p>
-        </div>
-      </section>
-
-      <section class="section" id="technology-stack">
-        <h2>2. Technology Stack & Hosting Options</h2>
+      <section class="section" id="implementation-comparison">
+        <h2>Implementation Options Overview</h2>
         
-        <h3>2.1 Core Technologies</h3>
-        <ul>
-          <li><strong>Backend:</strong> Medusa.js e-commerce platform</li>
-          <li><strong>Frontend:</strong> Next.js React framework</li>
-          <li><strong>Database:</strong> PostgreSQL</li>
-          <li><strong>Image Hosting:</strong> Cloudinary or AWS S3</li>
-          <li><strong>Payment Processing:</strong> Stripe (primary), PayPal and Bank Transfer (secondary)</li>
-          <li><strong>Email Service:</strong> SendGrid or similar for order notifications</li>
-          <li><strong>Authentication:</strong> Custom integration with Google OAuth</li>
-        </ul>
-        
-        <div class="tech-diagram">
-          <div class="diagram-connections">
-            <!-- User to Frontend -->
-            <div class="diagram-line" style="width: 2px; height: 50px; top: 90px; left: 50%; transform: translateX(-50%);"></div>
-            
-            <!-- Frontend to Backend -->
-            <div class="diagram-line" style="width: 2px; height: 60px; top: 190px; left: 50%; transform: translateX(-50%);"></div>
-            
-            <!-- Backend to Database -->
-            <div class="diagram-line" style="width: 2px; height: 60px; top: 310px; left: 50%; transform: translateX(-50%);"></div>
-            
-            <!-- Frontend to Authentication -->
-            <div class="diagram-line" style="width: 160px; height: 2px; top: 190px; left: calc(50% - 160px);"></div>
-            
-            <!-- Backend to Payment -->
-            <div class="diagram-line" style="width: 160px; height: 2px; top: 250px; left: calc(50% + 90px);"></div>
-            
-            <!-- Backend to Email -->
-            <div class="diagram-line" style="width: 160px; height: 2px; top: 290px; left: calc(50% - 160px);"></div>
-            
-            <!-- Backend to Storage -->
-            <div class="diagram-line" style="width: 160px; height: 2px; top: 310px; left: calc(50% + 90px);"></div>
-          </div>
-          
-          <div class="diagram-layer">
-            <!-- User/Customer Node -->
-            <div class="diagram-node user-node">
-              <div class="diagram-node-title">CUSTOMER</div>
-              <div class="diagram-node-desc">Browser / Mobile App</div>
-            </div>
-            
-            <!-- Frontend Node -->
-            <div class="diagram-node frontend-node">
-              <div class="diagram-node-title">FRONTEND</div>
-              <div class="diagram-node-desc">Next.js + React</div>
-            </div>
-            
-            <!-- Backend Node -->
-            <div class="diagram-node backend-node">
-              <div class="diagram-node-title">BACKEND</div>
-              <div class="diagram-node-desc">Medusa.js</div>
-            </div>
-            
-            <!-- Database Node -->
-            <div class="diagram-node database-node">
-              <div class="diagram-node-title">DATABASE</div>
-              <div class="diagram-node-desc">PostgreSQL</div>
-            </div>
-            
-            <!-- Payment Node -->
-            <div class="diagram-node payment-node">
-              <div class="diagram-node-title">PAYMENT</div>
-              <div class="diagram-node-desc">Stripe / PayPal</div>
-            </div>
-            
-            <!-- Storage Node -->
-            <div class="diagram-node storage-node">
-              <div class="diagram-node-title">STORAGE</div>
-              <div class="diagram-node-desc">Cloudinary / AWS S3</div>
-            </div>
-            
-            <!-- Authentication Node -->
-            <div class="diagram-node auth-node">
-              <div class="diagram-node-title">AUTHENTICATION</div>
-              <div class="diagram-node-desc">Google OAuth</div>
-            </div>
-            
-            <!-- Email Node -->
-            <div class="diagram-node email-node">
-              <div class="diagram-node-title">EMAIL SERVICE</div>
-              <div class="diagram-node-desc">SendGrid</div>
-            </div>
-          </div>
-        </div>
-
-        <h3>2.2 Hosting Options</h3>
-        
-        <div class="pricing-options">
-          <div class="pricing-option">
-            <h4 class="pricing-title">Option 1: Startup Configuration</h4>
-            <div class="pricing-cost"><strong>Monthly Cost:</strong> $50-100</div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Frontend Hosting: Vercel Pro Plan ($20/month)</h5>
-              <ul>
-                <li>Global CDN, automatic scaling</li>
-                <li>Handles ~250,000 monthly visitors</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Backend Service: Basic Cloud Server ($10-20/month)</h5>
-              <ul>
-                <li>2GB RAM/1 vCPU configuration</li>
-                <li>Suitable for initial traffic (up to ~100 orders/day)</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Database: Managed PostgreSQL ($15/month)</h5>
-              <ul>
-                <li>1GB RAM, 10GB storage</li>
-                <li>Automated backups</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Image Storage: Cloudinary Free/Basic Tier ($0-10/month)</h5>
-              <ul>
-                <li>Up to 25GB storage and bandwidth</li>
-                <li>Image optimization included</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="pricing-option">
-            <h4 class="pricing-title">Option 2: Enterprise Configuration</h4>
-            <div class="pricing-cost"><strong>Monthly Cost:</strong> $300-500</div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Frontend Hosting: Enhanced Vercel Plan ($40-80/month)</h5>
-              <ul>
-                <li>Handles millions of visitors</li>
-                <li>Priority support, advanced analytics</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Backend Service: Scaled Cloud Infrastructure ($100-150/month)</h5>
-              <ul>
-                <li>8GB+ RAM, multiple CPUs</li>
-                <li>Load balancing, high availability</li>
-                <li>Handles 1000+ orders/day</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Database: Performance-optimized PostgreSQL ($50-100/month)</h5>
-              <ul>
-                <li>4GB+ RAM, 100GB+ storage</li>
-                <li>Read replicas, enhanced performance</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Image Storage: Enterprise CDN ($50-100/month)</h5>
-              <ul>
-                <li>Unlimited storage</li>
-                <li>Global edge caching</li>
-              </ul>
-            </div>
-            
-            <div class="pricing-component">
-              <h5 class="pricing-component-title">Monitoring & Security: Advanced Tools ($50/month)</h5>
-              <ul>
-                <li>Real-time performance monitoring</li>
-                <li>Enhanced security protections</li>
-                <li>Automated scaling</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="custom-development">
-        <h2>3. Custom Development Requirements</h2>
-        <h3>3.1 Features Requiring Custom Implementation</h3>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">1. Wishlist/Favorites System</h4>
-          <div class="custom-dev-meta">
-            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not supported by Medusa core</div>
-            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
-          </div>
-          <p>Custom database model, API endpoints, and frontend components</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">2. Social Authentication (Google)</h4>
-          <div class="custom-dev-meta">
-            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not included in Medusa's authentication system</div>
-            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (8-12 hours)</div>
-          </div>
-          <p>Integration with NextAuth.js and Google OAuth</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">3. 00's Style UI Implementation</h4>
-          <div class="custom-dev-meta">
-            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Specific to your design requirements</div>
-            <div class="custom-dev-meta-item"><strong>Complexity:</strong> High (40-50 hours)</div>
-          </div>
-          <p>Custom components and styling throughout the application</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">4. Multi-language Structure</h4>
-          <div class="custom-dev-meta">
-            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Basic i18n support needs enhancement</div>
-            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (10-15 hours)</div>
-          </div>
-          <p>Extended translation system and language switcher</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">5. Enhanced Product Variations UI</h4>
-          <div class="custom-dev-meta">
-            <div class="custom-dev-meta-item"><strong>Why custom:</strong> Medusa's default UI doesn't match your design</div>
-            <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
-          </div>
-          <p>Custom product variation selectors and display</p>
-        </div>
-      </section>
-
-      <section class="section" id="timeline">
-        <h2>4. Compressed Development Timeline</h2>
-        <p>Efficient 8-10 week implementation schedule</p>
-        
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 1-2: Setup & Foundation</h4>
-            <ul>
-              <li>Infrastructure setup (all hosting environments)</li>
-              <li>Medusa core installation and configuration</li>
-              <li>Next.js project initialization</li>
-              <li>Base component library creation</li>
-              <li>Database schema planning</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 3-4: Core Pages</h4>
-            <ul>
-              <li>Homepage implementation</li>
-              <li>Product listing pages</li>
-              <li>Product detail page with variations</li>
-              <li>Basic navigation and layout</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 5-6: User Journey & Payments</h4>
-            <ul>
-              <li>Cart functionality</li>
-              <li>Checkout process</li>
-              <li>Stripe integration</li>
-              <li>PayPal integration</li>
-              <li>Bank transfer option</li>
-              <li>User account pages</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 7-8: Custom Features</h4>
-            <ul>
-              <li>Wishlist/favorites implementation</li>
-              <li>Google authentication</li>
-              <li>Email templates and notifications</li>
-              <li>Address management</li>
-              <li>Order history</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 9-10: Testing & Deployment</h4>
-            <ul>
-              <li>Cross-browser testing</li>
-              <li>Mobile responsiveness verification</li>
-              <li>Payment flow testing</li>
-              <li>Performance optimization</li>
-              <li>Final deployment and launch preparation</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="implementation-approach">
-        <h2>5. Medusa Core vs. Custom Implementation</h2>
-        
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Feature</th>
-                <th>Medusa Support</th>
-                <th>Implementation Approach</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Product Management</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use Medusa core</td>
-              </tr>
-              <tr>
-                <td>Order Processing</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use Medusa core</td>
-              </tr>
-              <tr>
-                <td>Cart Management</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use Medusa core</td>
-              </tr>
-              <tr>
-                <td>Customer Accounts</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use Medusa core</td>
-              </tr>
-              <tr>
-                <td>Payment Processing</td>
-                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
-                <td>Use Medusa + custom UI</td>
-              </tr>
-              <tr>
-                <td>Shipping Options</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use Medusa core</td>
-              </tr>
-              <tr>
-                <td>Product Variations</td>
-                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
-                <td>Use Medusa + custom UI</td>
-              </tr>
-              <tr>
-                <td>Email Notifications</td>
-                <td><span class="feature-support support-partial">✅</span>Partial Support</td>
-                <td>Use Medusa + custom templates</td>
-              </tr>
-              <tr>
-                <td>Wishlist/Favorites</td>
-                <td><span class="feature-support support-none">❌</span>Not Supported</td>
-                <td>Full custom implementation</td>
-              </tr>
-              <tr>
-                <td>Social Authentication</td>
-                <td><span class="feature-support support-none">❌</span>Not Supported</td>
-                <td>Full custom implementation</td>
-              </tr>
-              <tr>
-                <td>Multi-language</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Extend Medusa core</td>
-              </tr>
-              <tr>
-                <td>00's Style UI</td>
-                <td><span class="feature-support support-none">❌</span>Not Applicable</td>
-                <td>Full custom implementation</td>
-              </tr>
-              <tr>
-                <td>Product Search</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Use Medusa + basic customization</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="section" id="webflow-option">
-        <h2>6. Webflow E-commerce Option</h2>
-        
-        <div class="card">
-          <p><strong>Project Goal:</strong> Implement the ORE-ORE-ORE e-commerce website using Webflow's native e-commerce platform.</p>
-          <p><strong>Design Style:</strong> 00's aesthetic maintained through custom Webflow styling</p>
-          <p><strong>Budget Estimate:</strong> €4,500 for development</p>
-          <p><strong>Timeline:</strong> 4-6 weeks for complete implementation</p>
-          <p><strong>Reference:</strong> <a href="https://docs.google.com/document/d/1449uybz-F42Nk-xdswLUPdKYT8DiAMWvLZE25GAHGvw/edit?tab=t.0" style="color: var(--highlight); text-decoration: underline;">Screenshots of Webflow availability</a></p>
-        </div>
-        
-        <h3>6.1 Webflow E-commerce Platform Costs</h3>
-        <div class="pricing-options">
-          <div class="pricing-option">
-            <h4 class="pricing-title">Standard E-commerce Plan</h4>
-            <div class="pricing-cost"><strong>Monthly Cost:</strong> $29/month (billed yearly) or $42/month (billed monthly)</div>
-            <ul>
-              <li>Up to 500 product items</li>
-              <li>2,000 CMS items</li>
-              <li>2% transaction fee per order</li>
-              <li>3 staff accounts</li>
-              <li>Basic shipping rules</li>
-            </ul>
-          </div>
-          <div class="pricing-option">
-            <h4 class="pricing-title">Plus E-commerce Plan</h4>
-            <div class="pricing-cost"><strong>Monthly Cost:</strong> $74/month (billed yearly) or $84/month (billed monthly)</div>
-            <ul>
-              <li>Up to 5,000 product items</li>
-              <li>10,000 CMS items</li>
-              <li>0% transaction fee</li>
-              <li>10 staff accounts</li>
-              <li>$200K annual sales volume limit</li>
-              <li>Improved shipping options</li>
-            </ul>
-          </div>
-        </div>
-        
-        <h3>6.2 Webflow Native Setup Options</h3>
-        <ul>
-          <li><strong>Business Address:</strong> Configure store location and contact details</li>
-          <li><strong>Currency Settings:</strong> Set primary currency and display options</li>
-          <li><strong>Product Management:</strong> Add and configure products directly in Webflow</li>
-          <li><strong>Shipping Methods:</strong> Configure shipping options and pricing</li>
-          <li><strong>Cart Design:</strong> Fully customizable cart UI/UX</li>
-          <li><strong>Product Page Design:</strong> Design custom product templates</li>
-          <li><strong>Checkout Page Design:</strong> Style the checkout experience</li>
-          <li><strong>E-commerce Emails:</strong> Design and configure order notification emails</li>
-          <li><strong>Payment Provider:</strong> Integrate with Stripe, PayPal, or other providers</li>
-          <li><strong>Hosting:</strong> Built-in hosting on Webflow's infrastructure</li>
-        </ul>
-        
-        <h3>6.3 Critical Webflow E-commerce Limitations</h3>
-        <div class="card">
-          <h4 class="card-title">Unsupported Features in Webflow</h4>
-          <p>The following features are <strong>NOT</strong> supported in Webflow and cannot be implemented natively:</p>
-          <ul>
-            <li><strong>Saved Addresses:</strong> No ability for customers to save multiple shipping addresses for future use</li>
-            <li><strong>Address Book:</strong> Cannot implement an address management system for customers</li>
-            <li><strong>Payment Options:</strong> Limited to only Stripe and PayPal (no bank transfer, cash-on-delivery, or other payment methods)</li>
-            <li><strong>Custom Checkout Fields:</strong> Highly restricted - only three additional fields possible (one text field, one text area, one checkbox)</li>
-            <li><strong>Wishlist/Favorites:</strong> No native support for saving favorite products</li>
-            <li><strong>User Authentication:</strong> No social login options (Google, Facebook, etc.)</li>
-            <li><strong>Order History:</strong> No customer login or order history tracking</li>
-            <li><strong>Complex Discount Rules:</strong> Limited discount functionality (no volume discounts, tiered pricing)</li>
-            <li><strong>Shipping Zones:</strong> No support for zip code-based shipping, only country-based</li>
-          </ul>
-          <p style="margin-top: 16px;">These limitations mean several screens from the original design <strong>cannot be implemented</strong> on Webflow and will need to be excluded or significantly simplified.</p>
-        </div>
-        
-        <div class="tech-diagram" style="min-height: 300px;">
-          <div class="diagram-connections">
-            <!-- User to Webflow -->
-            <div class="diagram-line" style="width: 2px; height: 50px; top: 90px; left: 50%; transform: translateX(-50%);"></div>
-            
-            <!-- Webflow to Payment -->
-            <div class="diagram-line" style="width: 130px; height: 2px; top: 190px; left: calc(50% + 90px);"></div>
-            
-            <!-- Webflow to Email -->
-            <div class="diagram-line" style="width: 130px; height: 2px; top: 190px; left: calc(50% - 130px);"></div>
-          </div>
-          
-          <div class="diagram-layer">
-            <!-- User/Customer Node -->
-            <div class="diagram-node user-node">
-              <div class="diagram-node-title">CUSTOMER</div>
-              <div class="diagram-node-desc">Browser / Mobile</div>
-            </div>
-            
-            <!-- Webflow Node -->
-            <div class="diagram-node" style="top: 140px; left: 50%; transform: translateX(-50%);">
-              <div class="diagram-node-title">WEBFLOW</div>
-              <div class="diagram-node-desc">All-in-one Platform</div>
-            </div>
-            
-            <!-- Payment Node -->
-            <div class="diagram-node" style="top: 190px; left: calc(50% + 220px);">
-              <div class="diagram-node-title">PAYMENT</div>
-              <div class="diagram-node-desc">Stripe / PayPal</div>
-            </div>
-            
-            <!-- Email Node -->
-            <div class="diagram-node" style="top: 190px; left: calc(50% - 220px);">
-              <div class="diagram-node-title">EMAIL SERVICE</div>
-              <div class="diagram-node-desc">Native Integration</div>
-            </div>
-          </div>
-        </div>
-        
-        <h3>6.4 Webflow E-commerce Management</h3>
-        <p>Webflow provides a comprehensive e-commerce management system with these native features:</p>
-        
-        <ul>
-          <li><strong>Product Collections:</strong> Categories collection plus unlimited custom collections for filtering</li>
-          <li><strong>Orders Management:</strong> Built-in order processing and fulfillment tracking</li>
-          <li><strong>Discount Management:</strong> Create and manage promotional codes</li>
-          <li><strong>Subscription Management:</strong> Handle recurring billing (with limitations)</li>
-          <li><strong>Custom Fields:</strong> Add unlimited custom fields to products</li>
-        </ul>
-        
-        <h3>6.5 Webflow Product Structure</h3>
-        <p>Webflow offers a flexible product structure that can be customized for your needs:</p>
-        
-        <div class="card">
-          <h4 class="card-title">Basic Product Structure</h4>
-          <ul>
-            <li><strong>Name:</strong> Product title</li>
-            <li><strong>SKU:</strong> Unique product identifier</li>
-            <li><strong>Price:</strong> Base product price</li>
-            <li><strong>Compare-at Price:</strong> Original price for sale items</li>
-            <li><strong>Category:</strong> Primary product category</li>
-            <li><strong>Description:</strong> Rich text product description</li>
-            <li><strong>Images:</strong> Product gallery images</li>
-            <li><strong>Variations:</strong> Size, color, and other options</li>
-            <li><strong>Weight:</strong> For shipping calculations</li>
-            <li><strong>Dimensions:</strong> Physical product dimensions</li>
-          </ul>
-          <p style="margin-top: 16px;">You can add as many custom fields as needed for specific requirements, such as material type, care instructions, warranty information, or any other product attributes.</p>
-        </div>
-        
-        <h3>6.6 Required E-commerce Pages</h3>
-        <p>Webflow automatically generates these core e-commerce pages, which can be fully styled to match your design:</p>
-        
-        <ul>
-          <li><strong>Products:</strong> Main catalog page with filtering and sorting options</li>
-          <li><strong>Categories:</strong> Collection pages for product organization</li>
-          <li><strong>Discounts:</strong> Management interface for promotional offers</li>
-          <li><strong>Orders:</strong> Administrative dashboard for tracking customer purchases</li>
-          <li><strong>Subscriptions:</strong> Management interface for recurring billing</li>
-        </ul>
-        <p>All of these pages can be styled according to your needs while maintaining their core functionality. However, <strong>no additional features</strong> beyond what Webflow offers natively can be integrated without custom code solutions, and even with custom code, many features remain impossible to implement due to Webflow's closed checkout system.</p>
-        
-        <h3>6.7 Timeline for Webflow Implementation</h3>
-        
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 1-2: Setup & Design</h4>
-            <ul>
-              <li>Webflow site setup and configuration</li>
-              <li>E-commerce settings configuration</li>
-              <li>Design system and component creation</li>
-              <li>Homepage and navigation implementation</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 3-4: Core E-commerce</h4>
-            <ul>
-              <li>Product catalog design and implementation</li>
-              <li>Product detail page customization</li>
-              <li>Cart and checkout styling</li>
-              <li>Payment gateway integration</li>
-              <li>Email template design</li>
-            </ul>
-          </div>
-          
-          <div class="timeline-item">
-            <h4 class="timeline-title">Weeks 5-6: Finalization</h4>
-            <ul>
-              <li>CMS content integration</li>
-              <li>Responsive design testing</li>
-              <li>Performance optimization</li>
-              <li>Client training</li>
-              <li>Launch preparation</li>
-            </ul>
-          </div>
-        </div>
-        
-        <h3>6.8 Webflow vs Medusa.js Comparison</h3>
-        
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Feature</th>
-                <th>Webflow Support</th>
-                <th>Customization Approach</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Product Management</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use native Webflow</td>
-              </tr>
-              <tr>
-                <td>Order Processing</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use native Webflow</td>
-              </tr>
-              <tr>
-                <td>Cart Management</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use native Webflow + styling</td>
-              </tr>
-              <tr>
-                <td>Customer Accounts</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Use native Webflow (limited features)</td>
-              </tr>
-              <tr>
-                <td>Payment Processing</td>
-                <td><span class="feature-support support-partial">✅</span>Limited Options</td>
-                <td>Use Webflow's supported gateways</td>
-              </tr>
-              <tr>
-                <td>Shipping Options</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Use native Webflow (some limitations)</td>
-              </tr>
-              <tr>
-                <td>Product Variations</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Use native Webflow + custom fields</td>
-              </tr>
-              <tr>
-                <td>Email Notifications</td>
-                <td><span class="feature-support support-full">✅</span>Full Support</td>
-                <td>Use native Webflow email templates</td>
-              </tr>
-              <tr>
-                <td>Wishlist/Favorites</td>
-                <td><span class="feature-support support-none">❌</span>Not Supported</td>
-                <td>Limited implementation via Webflow CMS</td>
-              </tr>
-              <tr>
-                <td>Social Authentication</td>
-                <td><span class="feature-support support-none">❌</span>Not Supported</td>
-                <td>Not available in Webflow</td>
-              </tr>
-              <tr>
-                <td>Multi-language</td>
-                <td><span class="feature-support support-partial">✅</span>Limited Support</td>
-                <td>Manual implementation with CMS</td>
-              </tr>
-              <tr>
-                <td>00's Style UI</td>
-                <td><span class="feature-support support-full">✅</span>Fully Customizable</td>
-                <td>Custom Webflow design system</td>
-              </tr>
-              <tr>
-                <td>Custom Inventory System</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Use native with limitations</td>
-              </tr>
-              <tr>
-                <td>Complex Discount Rules</td>
-                <td><span class="feature-support support-partial">✅</span>Basic Support</td>
-                <td>Limited to Webflow's offerings</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <h3>6.9 Webflow Limitations vs. Custom Solution</h3>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">Limited API Access</h4>
-          <p>Webflow provides extremely limited API access compared to a fully custom solution, restricting most integrations and custom functionality.</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">Subscription Limitations</h4>
-          <p>Basic subscription functionality with limited flexibility for complex recurring billing models.</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">Complex Discount Structures</h4>
-          <p>Limited ability to implement sophisticated discount rules or loyalty programs.</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">Authentication Options</h4>
-          <p>No support for social authentication, custom authentication flows, or user account management.</p>
-        </div>
-        
-        <div class="custom-dev-item">
-          <h4 class="custom-dev-title">Checkout Customization</h4>
-          <p>While stylable, the checkout process has severe structural limitations that cannot be customized beyond basic styling - no saved addresses, limited payment methods, and minimal custom fields.</p>
-        </div>
-        
-        <h3>6.10 Visual Comparison of Implementation Options</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0;">
+        <h3>Visual Comparison of Implementation Options</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin: 32px 0;">
           <div class="card">
             <h4 class="card-title">Medusa.js + Next.js</h4>
             <div style="margin-bottom: 16px;">
@@ -1291,42 +710,823 @@
               <p style="font-size: 15px;"><strong>Best For:</strong> Standard e-commerce stores with emphasis on design and rapid deployment</p>
             </div>
           </div>
+
+          <div class="card">
+            <h4 class="card-title">Shopify Headless</h4>
+            <div style="margin-bottom: 16px;">
+              <div style="height: 8px; background-color: #4caf50; width: 70%; margin-bottom: 8px;"></div>
+              <p style="font-size: 14px;">Customization Flexibility: 70%</p>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="height: 8px; background-color: #4caf50; width: 65%; margin-bottom: 8px;"></div>
+              <p style="font-size: 14px;">Development Speed: 65%</p>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="height: 8px; background-color: #4caf50; width: 75%; margin-bottom: 8px;"></div>
+              <p style="font-size: 14px;">Content Management Ease: 75%</p>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="height: 8px; background-color: #4caf50; width: 85%; margin-bottom: 8px;"></div>
+              <p style="font-size: 14px;">Scalability: 85%</p>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="height: 8px; background-color: #4caf50; width: 70%; margin-bottom: 8px;"></div>
+              <p style="font-size: 14px;">Maintenance Simplicity: 70%</p>
+            </div>
+            <div style="margin-top: 24px;">
+              <p style="font-size: 15px;"><strong>Best For:</strong> Balanced approach with established e-commerce features and custom UI needs</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-title">Key Decision Factors</h4>
+          <ul>
+            <li><strong>Budget:</strong> Webflow offers the lowest development cost but with significant feature limitations</li>
+            <li><strong>Timeline:</strong> Webflow enables fastest launch, while Medusa.js requires the longest development time</li>
+            <li><strong>Features:</strong> Medusa.js supports all planned features, while Webflow and Shopify have limitations</li>
+            <li><strong>Customization:</strong> Medusa.js offers full control, Shopify provides good balance, Webflow has limited options</li>
+            <li><strong>Maintenance:</strong> Webflow is simplest to maintain, Medusa.js requires most technical expertise</li>
+          </ul>
         </div>
       </section>
 
-      <section class="section" id="recommended-focus">
-        <h2>7. Recommended Focus Areas</h2>
-        <p>Selecting the right implementation approach depends on your specific needs:</p>
+      <div class="tab-nav">
+        <button class="tab-button active" onclick="openTab(event, 'medusa')">Medusa.js</button>
+        <button class="tab-button" onclick="openTab(event, 'webflow')">Webflow</button>
+        <button class="tab-button" onclick="openTab(event, 'shopify')">Shopify Headless</button>
+      </div>
 
-        <div class="pricing-options">
-          <div class="pricing-option">
-            <h4 class="pricing-title">Choose Medusa.js + Next.js When...</h4>
+      <div id="medusa" class="tab-content active">
+        <section class="section" id="project-overview">
+          <h2>1. Project Overview</h2>
+          <div class="card">
+            <p><strong>Project Goal:</strong> Implement the complete ORE-ORE-ORE e-commerce website design using Medusa.js as the backend and Next.js for the frontend.</p>
+            <p><strong>Design Style:</strong> 00's aesthetic with simpler layouts and focused functionality</p>
+            <!-- <p><strong>Budget Estimate:</strong> $9,000 for development</p> -->
+            <p><strong>Timeline:</strong> 8-10 weeks for complete implementation (compressed schedule)</p>
+          </div>
+        </section>
+
+        <section class="section" id="technology-stack">
+          <h2>2. Technology Stack & Hosting Options</h2>
+          
+          <h3>2.1 Core Technologies</h3>
+          <ul>
+            <li><strong>Backend:</strong> Medusa.js e-commerce platform</li>
+            <li><strong>Frontend:</strong> Next.js React framework</li>
+            <li><strong>Database:</strong> PostgreSQL</li>
+            <li><strong>Image Hosting:</strong> Cloudinary or AWS S3</li>
+            <li><strong>Payment Processing:</strong> Stripe (primary), PayPal and Bank Transfer (secondary)</li>
+            <li><strong>Email Service:</strong> SendGrid or similar for order notifications</li>
+            <li><strong>Authentication:</strong> Custom integration with Google OAuth</li>
+          </ul>
+          
+          <div class="tech-diagram">
+            <div class="diagram-connections">
+              <!-- User to Frontend -->
+              <div class="diagram-line" style="width: 2px; height: 50px; top: 90px; left: 50%; transform: translateX(-50%);"></div>
+              
+              <!-- Frontend to Backend -->
+              <div class="diagram-line" style="width: 2px; height: 60px; top: 190px; left: 50%; transform: translateX(-50%);"></div>
+              
+              <!-- Backend to Database -->
+              <div class="diagram-line" style="width: 2px; height: 60px; top: 310px; left: 50%; transform: translateX(-50%);"></div>
+              
+              <!-- Frontend to Authentication -->
+              <div class="diagram-line" style="width: 160px; height: 2px; top: 190px; left: calc(50% - 160px);"></div>
+              
+              <!-- Backend to Payment -->
+              <div class="diagram-line" style="width: 160px; height: 2px; top: 250px; left: calc(50% + 90px);"></div>
+              
+              <!-- Backend to Email -->
+              <div class="diagram-line" style="width: 160px; height: 2px; top: 290px; left: calc(50% - 160px);"></div>
+              
+              <!-- Backend to Storage -->
+              <div class="diagram-line" style="width: 160px; height: 2px; top: 310px; left: calc(50% + 90px);"></div>
+            </div>
+            
+            <div class="diagram-layer">
+              <!-- User/Customer Node -->
+              <div class="diagram-node user-node">
+                <div class="diagram-node-title">CUSTOMER</div>
+                <div class="diagram-node-desc">Browser / Mobile App</div>
+              </div>
+              
+              <!-- Frontend Node -->
+              <div class="diagram-node frontend-node">
+                <div class="diagram-node-title">FRONTEND</div>
+                <div class="diagram-node-desc">Next.js + React</div>
+              </div>
+              
+              <!-- Backend Node -->
+              <div class="diagram-node backend-node">
+                <div class="diagram-node-title">BACKEND</div>
+                <div class="diagram-node-desc">Medusa.js</div>
+              </div>
+              
+              <!-- Database Node -->
+              <div class="diagram-node database-node">
+                <div class="diagram-node-title">DATABASE</div>
+                <div class="diagram-node-desc">PostgreSQL</div>
+              </div>
+              
+              <!-- Payment Node -->
+              <div class="diagram-node payment-node">
+                <div class="diagram-node-title">PAYMENT</div>
+                <div class="diagram-node-desc">Stripe / PayPal</div>
+              </div>
+              
+              <!-- Storage Node -->
+              <div class="diagram-node storage-node">
+                <div class="diagram-node-title">STORAGE</div>
+                <div class="diagram-node-desc">Cloudinary / AWS S3</div>
+              </div>
+              
+              <!-- Authentication Node -->
+              <div class="diagram-node auth-node">
+                <div class="diagram-node-title">AUTHENTICATION</div>
+                <div class="diagram-node-desc">Google OAuth</div>
+              </div>
+              
+              <!-- Email Node -->
+              <div class="diagram-node email-node">
+                <div class="diagram-node-title">EMAIL SERVICE</div>
+                <div class="diagram-node-desc">SendGrid</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>2.2 Hosting Options</h3>
+          
+          <div class="pricing-options">
+            <div class="pricing-option">
+              <h4 class="pricing-title">Option 1: Startup Configuration</h4>
+              <div class="pricing-cost"><strong>Monthly Cost:</strong> $50-100</div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Frontend Hosting: Vercel Pro Plan ($20/month)</h5>
+                <ul>
+                  <li>Global CDN, automatic scaling</li>
+                  <li>Handles ~250,000 monthly visitors</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Backend Service: Basic Cloud Server ($10-20/month)</h5>
+                <ul>
+                  <li>2GB RAM/1 vCPU configuration</li>
+                  <li>Suitable for initial traffic (up to ~100 orders/day)</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Database: Managed PostgreSQL ($15/month)</h5>
+                <ul>
+                  <li>1GB RAM, 10GB storage</li>
+                  <li>Automated backups</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Image Storage: Cloudinary Free/Basic Tier ($0-10/month)</h5>
+                <ul>
+                  <li>Up to 25GB storage and bandwidth</li>
+                  <li>Image optimization included</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="pricing-option">
+              <h4 class="pricing-title">Option 2: Enterprise Configuration</h4>
+              <div class="pricing-cost"><strong>Monthly Cost:</strong> $300-500</div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Frontend Hosting: Enhanced Vercel Plan ($40-80/month)</h5>
+                <ul>
+                  <li>Handles millions of visitors</li>
+                  <li>Priority support, advanced analytics</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Backend Service: Scaled Cloud Infrastructure ($100-150/month)</h5>
+                <ul>
+                  <li>8GB+ RAM, multiple CPUs</li>
+                  <li>Load balancing, high availability</li>
+                  <li>Handles 1000+ orders/day</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Database: Performance-optimized PostgreSQL ($50-100/month)</h5>
+                <ul>
+                  <li>4GB+ RAM, 100GB+ storage</li>
+                  <li>Read replicas, enhanced performance</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Image Storage: Enterprise CDN ($50-100/month)</h5>
+                <ul>
+                  <li>Unlimited storage</li>
+                  <li>Global edge caching</li>
+                </ul>
+              </div>
+              
+              <div class="pricing-component">
+                <h5 class="pricing-component-title">Monitoring & Security: Advanced Tools ($50/month)</h5>
+                <ul>
+                  <li>Real-time performance monitoring</li>
+                  <li>Enhanced security protections</li>
+                  <li>Automated scaling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="custom-development">
+          <h2>3. Custom Development Requirements</h2>
+          <h3>3.1 Features Requiring Custom Implementation</h3>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">1. Wishlist/Favorites System</h4>
+            <div class="custom-dev-meta">
+              <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not supported by Medusa core</div>
+              <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
+            </div>
+            <p>Custom database model, API endpoints, and frontend components</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">2. Social Authentication (Google)</h4>
+            <div class="custom-dev-meta">
+              <div class="custom-dev-meta-item"><strong>Why custom:</strong> Not included in Medusa's authentication system</div>
+              <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (8-12 hours)</div>
+            </div>
+            <p>Integration with NextAuth.js and Google OAuth</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">3. 00's Style UI Implementation</h4>
+            <div class="custom-dev-meta">
+              <div class="custom-dev-meta-item"><strong>Why custom:</strong> Specific to your design requirements</div>
+              <div class="custom-dev-meta-item"><strong>Complexity:</strong> High (40-50 hours)</div>
+            </div>
+            <p>Custom components and styling throughout the application</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">4. Multi-language Structure</h4>
+            <div class="custom-dev-meta">
+              <div class="custom-dev-meta-item"><strong>Why custom:</strong> Basic i18n support needs enhancement</div>
+              <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (10-15 hours)</div>
+            </div>
+            <p>Extended translation system and language switcher</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">5. Enhanced Product Variations UI</h4>
+            <div class="custom-dev-meta">
+              <div class="custom-dev-meta-item"><strong>Why custom:</strong> Medusa's default UI doesn't match your design</div>
+              <div class="custom-dev-meta-item"><strong>Complexity:</strong> Medium (15-20 hours)</div>
+            </div>
+            <p>Custom product variation selectors and display</p>
+          </div>
+        </section>
+
+        <section class="section" id="timeline">
+          <h2>4. Compressed Development Timeline</h2>
+          <p>Efficient 8-10 week implementation schedule</p>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 1-2: Setup & Foundation</h4>
+              <ul>
+                <li>Infrastructure setup (all hosting environments)</li>
+                <li>Medusa core installation and configuration</li>
+                <li>Next.js project initialization</li>
+                <li>Base component library creation</li>
+                <li>Database schema planning</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 3-4: Core Pages</h4>
+              <ul>
+                <li>Homepage implementation</li>
+                <li>Product listing pages</li>
+                <li>Product detail page with variations</li>
+                <li>Basic navigation and layout</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 5-6: User Journey & Payments</h4>
+              <ul>
+                <li>Cart functionality</li>
+                <li>Checkout process</li>
+                <li>Stripe integration</li>
+                <li>PayPal integration</li>
+                <li>Bank transfer option</li>
+                <li>User account pages</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 7-8: Custom Features</h4>
+              <ul>
+                <li>Wishlist/favorites implementation</li>
+                <li>Google authentication</li>
+                <li>Email templates and notifications</li>
+                <li>Address management</li>
+                <li>Order history</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 9-10: Testing & Deployment</h4>
+              <ul>
+                <li>Cross-browser testing</li>
+                <li>Mobile responsiveness verification</li>
+                <li>Payment flow testing</li>
+                <li>Performance optimization</li>
+                <li>Final deployment and launch preparation</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="implementation-approach">
+          <h2>5. Medusa Core vs. Custom Implementation</h2>
+          
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Medusa Support</th>
+                  <th>Implementation Approach</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Product Management</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use Medusa core</td>
+                </tr>
+                <tr>
+                  <td>Order Processing</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use Medusa core</td>
+                </tr>
+                <tr>
+                  <td>Cart Management</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use Medusa core</td>
+                </tr>
+                <tr>
+                  <td>Customer Accounts</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use Medusa core</td>
+                </tr>
+                <tr>
+                  <td>Payment Processing</td>
+                  <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                  <td>Use Medusa + custom UI</td>
+                </tr>
+                <tr>
+                  <td>Shipping Options</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use Medusa core</td>
+                </tr>
+                <tr>
+                  <td>Product Variations</td>
+                  <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                  <td>Use Medusa + custom UI</td>
+                </tr>
+                <tr>
+                  <td>Email Notifications</td>
+                  <td><span class="feature-support support-partial">✅</span>Partial Support</td>
+                  <td>Use Medusa + custom templates</td>
+                </tr>
+                <tr>
+                  <td>Wishlist/Favorites</td>
+                  <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                  <td>Full custom implementation</td>
+                </tr>
+                <tr>
+                  <td>Social Authentication</td>
+                  <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                  <td>Full custom implementation</td>
+                </tr>
+                <tr>
+                  <td>Multi-language</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Extend Medusa core</td>
+                </tr>
+                <tr>
+                  <td>00's Style UI</td>
+                  <td><span class="feature-support support-none">❌</span>Not Applicable</td>
+                  <td>Full custom implementation</td>
+                </tr>
+                <tr>
+                  <td>Product Search</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Use Medusa + basic customization</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="recommended-focus">
+          <h2>6. Recommended Focus Areas</h2>
+          <p>Selecting the right implementation approach depends on your specific needs:</p>
+
+          <div class="pricing-options">
+            <div class="pricing-option">
+              <h4 class="pricing-title">Choose Medusa.js + Next.js When...</h4>
+              <ul>
+                <li>You need complex custom features not supported by Webflow</li>
+                <li>Social authentication is a core requirement</li>
+                <li>You plan to scale significantly with custom integrations</li>
+                <li>Advanced product variations or inventory management are needed</li>
+                <li>You require complete control over the checkout process</li>
+                <li>Original design requires saved addresses, order history, or advanced payment options</li>
+                <li>Custom checkout flow with multiple steps is required</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-option">
+              <h4 class="pricing-title">Choose Webflow E-commerce When...</h4>
+              <ul>
+                <li>You need to launch quickly (4-6 weeks vs 8-10 weeks)</li>
+                <!-- <li>Budget is more constrained (€4,500 vs $9,000)</li> -->
+                <li>Content management by non-technical staff is important</li>
+                <li>You're willing to simplify the design to work within Webflow's limitations</li>
+                <li>Visual design flexibility is prioritized over backend complexity</li>
+                <li>Long-term maintenance simplicity is valued</li>
+              </ul>
+            </div>
+
+            <div class="pricing-option">
+              <h4 class="pricing-title">Choose Shopify Headless When...</h4>
+              <ul>
+                <li>You need a balance between customization and managed infrastructure</li>
+                <li>Robust API access is required for custom integrations</li>
+                <li>You want established e-commerce features with custom UI</li>
+                <li>Scalability and reliability are top priorities</li>
+                <li>You need advanced analytics and reporting</li>
+                <li>International commerce features are required</li>
+                <li>You want access to Shopify's app ecosystem</li>
+              </ul>
+            </div>
+          </div>
+          
+        
+          
+          <p style="margin-top: 32px;">To ensure successful implementation with either approach:</p>
+          
+          <div class="card">
+            <h4 class="card-title">1. Early Infrastructure Setup</h4>
             <ul>
-              <li>You need complex custom features not supported by Webflow</li>
-              <li>Social authentication is a core requirement</li>
-              <li>You plan to scale significantly with custom integrations</li>
-              <li>Advanced product variations or inventory management are needed</li>
-              <li>You require complete control over the checkout process</li>
-              <li>Original design requires saved addresses, order history, or advanced payment options</li>
-              <li>Custom checkout flow with multiple steps is required</li>
+              <li>Complete hosting configuration in first week</li>
+              <li>Ensure development environments match production</li>
             </ul>
           </div>
           
-          <div class="pricing-option">
-            <h4 class="pricing-title">Choose Webflow E-commerce When...</h4>
+          <div class="card">
+            <h4 class="card-title">2. Prioritize Core User Journey</h4>
             <ul>
-              <li>You need to launch quickly (4-6 weeks vs 8-10 weeks)</li>
-              <li>Budget is more constrained (€4,500 vs $9,000)</li>
-              <li>Content management by non-technical staff is important</li>
-              <li>You're willing to simplify the design to work within Webflow's limitations</li>
-              <li>Visual design flexibility is prioritized over backend complexity</li>
-              <li>Long-term maintenance simplicity is valued</li>
-              <li>You accept that certain screens and functions must be excluded (saved addresses, multiple payment methods)</li>
+              <li>Focus on product browsing → cart → checkout flow first</li>
+              <li>Ensure payment methods work flawlessly</li>
             </ul>
           </div>
-        </div>
-        
-        <h3>7.1 Implementation Reality Check</h3>
+          
+          <div class="card">
+            <h4 class="card-title">3. Parallel Development Tracks</h4>
+            <ul>
+              <li>Frontend styling can progress alongside backend integration</li>
+              <li>Custom features can be developed in parallel with core pages</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h4 class="card-title">4. Weekly Progress Milestones</h4>
+            <ul>
+              <li>Set specific completion targets for each feature</li>
+              <li>Regular testing of completed components</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div id="webflow" class="tab-content">
+        <section class="section" id="webflow-overview">
+          <h2>Webflow E-commerce Implementation</h2>
+
+          <div class="card">
+            <p><strong>Project Goal:</strong> Implement the ORE-ORE-ORE e-commerce website using Webflow's native e-commerce platform.</p>
+            <p><strong>Design Style:</strong> 00's aesthetic maintained through custom Webflow styling</p>
+            <!-- <p><strong>Budget Estimate:</strong> €4,500 for development</p> -->
+            <p><strong>Timeline:</strong> 4-6 weeks for complete implementation</p>
+            <p><strong>Reference:</strong> <a href="https://docs.google.com/document/d/1449uybz-F42Nk-xdswLUPdKYT8DiAMWvLZE25GAHGvw/edit?tab=t.0" style="color: var(--highlight); text-decoration: underline;">Screenshots of Webflow availability</a></p>
+          </div>
+          
+          <h3>6.1 Webflow E-commerce Platform Costs</h3>
+          <div class="pricing-options">
+            <div class="pricing-option">
+              <h4 class="pricing-title">Standard E-commerce Plan</h4>
+              <div class="pricing-cost"><strong>Monthly Cost:</strong> $29/month (billed yearly) or $42/month (billed monthly)</div>
+              <ul>
+                <li>Up to 500 product items</li>
+                <li>2,000 CMS items</li>
+                <li>2% transaction fee per order</li>
+                <li>3 staff accounts</li>
+                <li>Basic shipping rules</li>
+              </ul>
+            </div>
+            <div class="pricing-option">
+              <h4 class="pricing-title">Plus E-commerce Plan</h4>
+              <div class="pricing-cost"><strong>Monthly Cost:</strong> $74/month (billed yearly) or $84/month (billed monthly)</div>
+              <ul>
+                <li>Up to 5,000 product items</li>
+                <li>10,000 CMS items</li>
+                <li>0% transaction fee</li>
+                <li>10 staff accounts</li>
+                <li>$200K annual sales volume limit</li>
+                <li>Improved shipping options</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h3>6.2 Webflow Native Setup Options</h3>
+          <ul>
+            <li><strong>Business Address:</strong> Configure store location and contact details</li>
+            <li><strong>Currency Settings:</strong> Set primary currency and display options</li>
+            <li><strong>Product Management:</strong> Add and configure products directly in Webflow</li>
+            <li><strong>Shipping Methods:</strong> Configure shipping options and pricing</li>
+            <li><strong>Cart Design:</strong> Fully customizable cart UI/UX</li>
+            <li><strong>Product Page Design:</strong> Design custom product templates</li>
+            <li><strong>Checkout Page Design:</strong> Style the checkout experience</li>
+            <li><strong>E-commerce Emails:</strong> Design and configure order notification emails</li>
+            <li><strong>Payment Provider:</strong> Integrate with Stripe, PayPal, or other providers</li>
+            <li><strong>Hosting:</strong> Built-in hosting on Webflow's infrastructure</li>
+          </ul>
+          
+          <h3>6.3 Critical Webflow E-commerce Limitations</h3>
+          <div class="card">
+            <h4 class="card-title">Unsupported Features in Webflow</h4>
+            <p>The following features are <strong>NOT</strong> supported in Webflow and cannot be implemented natively:</p>
+            <ul>
+              <li><strong>Saved Addresses:</strong> No ability for customers to save multiple shipping addresses for future use</li>
+              <li><strong>Address Book:</strong> Cannot implement an address management system for customers</li>
+              <li><strong>Payment Options:</strong> Limited to only Stripe and PayPal (no bank transfer, cash-on-delivery, or other payment methods)</li>
+              <li><strong>Custom Checkout Fields:</strong> Highly restricted - only three additional fields possible (one text field, one text area, one checkbox)</li>
+              <li><strong>Wishlist/Favorites:</strong> No native support for saving favorite products</li>
+              <li><strong>User Authentication:</strong> No social login options (Google, Facebook, etc.)</li>
+              <li><strong>Order History:</strong> No customer login or order history tracking</li>
+              <li><strong>Complex Discount Rules:</strong> Limited discount functionality (no volume discounts, tiered pricing)</li>
+              <li><strong>Shipping Zones:</strong> No support for zip code-based shipping, only country-based</li>
+            </ul>
+            <p style="margin-top: 16px;">These limitations mean several screens from the original design <strong>cannot be implemented</strong> on Webflow and will need to be excluded or significantly simplified.</p>
+          </div>
+          
+          <div class="tech-diagram" style="min-height: 300px;">
+            <div class="diagram-connections">
+              <!-- User to Webflow -->
+              <div class="diagram-line" style="width: 2px; height: 50px; top: 90px; left: 50%; transform: translateX(-50%);"></div>
+              
+              <!-- Webflow to Payment -->
+              <div class="diagram-line" style="width: 130px; height: 2px; top: 190px; left: calc(50% + 90px);"></div>
+              
+              <!-- Webflow to Email -->
+              <div class="diagram-line" style="width: 130px; height: 2px; top: 190px; left: calc(50% - 130px);"></div>
+            </div>
+            
+            <div class="diagram-layer">
+              <!-- User/Customer Node -->
+              <div class="diagram-node user-node">
+                <div class="diagram-node-title">CUSTOMER</div>
+                <div class="diagram-node-desc">Browser / Mobile</div>
+              </div>
+              
+              <!-- Webflow Node -->
+              <div class="diagram-node" style="top: 140px; left: 50%; transform: translateX(-50%);">
+                <div class="diagram-node-title">WEBFLOW</div>
+                <div class="diagram-node-desc">All-in-one Platform</div>
+              </div>
+              
+              <!-- Payment Node -->
+              <div class="diagram-node" style="top: 190px; left: calc(50% + 220px);">
+                <div class="diagram-node-title">PAYMENT</div>
+                <div class="diagram-node-desc">Stripe / PayPal</div>
+              </div>
+              
+              <!-- Email Node -->
+              <div class="diagram-node" style="top: 190px; left: calc(50% - 220px);">
+                <div class="diagram-node-title">EMAIL SERVICE</div>
+                <div class="diagram-node-desc">Native Integration</div>
+              </div>
+            </div>
+          </div>
+          
+          <h3>6.4 Webflow E-commerce Management</h3>
+          <p>Webflow provides a comprehensive e-commerce management system with these native features:</p>
+          
+          <ul>
+            <li><strong>Product Collections:</strong> Categories collection plus unlimited custom collections for filtering</li>
+            <li><strong>Orders Management:</strong> Built-in order processing and fulfillment tracking</li>
+            <li><strong>Discount Management:</strong> Create and manage promotional codes</li>
+            <li><strong>Subscription Management:</strong> Handle recurring billing (with limitations)</li>
+            <li><strong>Custom Fields:</strong> Add unlimited custom fields to products</li>
+          </ul>
+          
+          <h3>6.5 Webflow Product Structure</h3>
+          <p>Webflow offers a flexible product structure that can be customized for your needs:</p>
+          
+          <div class="card">
+            <h4 class="card-title">Basic Product Structure</h4>
+            <ul>
+              <li><strong>Name:</strong> Product title</li>
+              <li><strong>SKU:</strong> Unique product identifier</li>
+              <li><strong>Price:</strong> Base product price</li>
+              <li><strong>Compare-at Price:</strong> Original price for sale items</li>
+              <li><strong>Category:</strong> Primary product category</li>
+              <li><strong>Description:</strong> Rich text product description</li>
+              <li><strong>Images:</strong> Product gallery images</li>
+              <li><strong>Variations:</strong> Size, color, and other options</li>
+              <li><strong>Weight:</strong> For shipping calculations</li>
+              <li><strong>Dimensions:</strong> Physical product dimensions</li>
+            </ul>
+            <p style="margin-top: 16px;">You can add as many custom fields as needed for specific requirements, such as material type, care instructions, warranty information, or any other product attributes.</p>
+          </div>
+          
+          <h3>6.6 Required E-commerce Pages</h3>
+          <p>Webflow automatically generates these core e-commerce pages, which can be fully styled to match your design:</p>
+          
+          <ul>
+            <li><strong>Products:</strong> Main catalog page with filtering and sorting options</li>
+            <li><strong>Categories:</strong> Collection pages for product organization</li>
+            <li><strong>Discounts:</strong> Management interface for promotional offers</li>
+            <li><strong>Orders:</strong> Administrative dashboard for tracking customer purchases</li>
+            <li><strong>Subscriptions:</strong> Management interface for recurring billing</li>
+          </ul>
+          <p>All of these pages can be styled according to your needs while maintaining their core functionality. However, <strong>no additional features</strong> beyond what Webflow offers natively can be integrated without custom code solutions, and even with custom code, many features remain impossible to implement due to Webflow's closed checkout system.</p>
+          
+          <h3>6.7 Timeline for Webflow Implementation</h3>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 1-2: Setup & Design</h4>
+              <ul>
+                <li>Webflow site setup and configuration</li>
+                <li>E-commerce settings configuration</li>
+                <li>Design system and component creation</li>
+                <li>Homepage and navigation implementation</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 3-4: Core E-commerce</h4>
+              <ul>
+                <li>Product catalog design and implementation</li>
+                <li>Product detail page customization</li>
+                <li>Cart and checkout styling</li>
+                <li>Payment gateway integration</li>
+                <li>Email template design</li>
+              </ul>
+            </div>
+            
+            <div class="timeline-item">
+              <h4 class="timeline-title">Weeks 5-6: Finalization</h4>
+              <ul>
+                <li>CMS content integration</li>
+                <li>Responsive design testing</li>
+                <li>Performance optimization</li>
+                <li>Client training</li>
+                <li>Launch preparation</li>
+              </ul>
+            </div>
+          </div>
+          
+          <h3>6.8 Webflow vs Medusa.js Comparison</h3>
+          
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Webflow Support</th>
+                  <th>Customization Approach</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Product Management</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use native Webflow</td>
+                </tr>
+                <tr>
+                  <td>Order Processing</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use native Webflow</td>
+                </tr>
+                <tr>
+                  <td>Cart Management</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use native Webflow + styling</td>
+                </tr>
+                <tr>
+                  <td>Customer Accounts</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Use native Webflow (limited features)</td>
+                </tr>
+                <tr>
+                  <td>Payment Processing</td>
+                  <td><span class="feature-support support-partial">✅</span>Limited Options</td>
+                  <td>Use Webflow's supported gateways</td>
+                </tr>
+                <tr>
+                  <td>Shipping Options</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Use native Webflow (some limitations)</td>
+                </tr>
+                <tr>
+                  <td>Product Variations</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Use native Webflow + custom fields</td>
+                </tr>
+                <tr>
+                  <td>Email Notifications</td>
+                  <td><span class="feature-support support-full">✅</span>Full Support</td>
+                  <td>Use native Webflow email templates</td>
+                </tr>
+                <tr>
+                  <td>Wishlist/Favorites</td>
+                  <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                  <td>Limited implementation via Webflow CMS</td>
+                </tr>
+                <tr>
+                  <td>Social Authentication</td>
+                  <td><span class="feature-support support-none">❌</span>Not Supported</td>
+                  <td>Not available in Webflow</td>
+                </tr>
+                <tr>
+                  <td>Multi-language</td>
+                  <td><span class="feature-support support-partial">✅</span>Limited Support</td>
+                  <td>Manual implementation with CMS</td>
+                </tr>
+                <tr>
+                  <td>00's Style UI</td>
+                  <td><span class="feature-support support-full">✅</span>Fully Customizable</td>
+                  <td>Custom Webflow design system</td>
+                </tr>
+                <tr>
+                  <td>Custom Inventory System</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Use native with limitations</td>
+                </tr>
+                <tr>
+                  <td>Complex Discount Rules</td>
+                  <td><span class="feature-support support-partial">✅</span>Basic Support</td>
+                  <td>Limited to Webflow's offerings</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3>6.9 Webflow Limitations vs. Custom Solution</h3>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">Limited API Access</h4>
+            <p>Webflow provides extremely limited API access compared to a fully custom solution, restricting most integrations and custom functionality.</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">Subscription Limitations</h4>
+            <p>Basic subscription functionality with limited flexibility for complex recurring billing models.</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">Complex Discount Structures</h4>
+            <p>Limited ability to implement sophisticated discount rules or loyalty programs.</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">Authentication Options</h4>
+            <p>No support for social authentication, custom authentication flows, or user account management.</p>
+          </div>
+          
+          <div class="custom-dev-item">
+            <h4 class="custom-dev-title">Checkout Customization</h4>
+            <p>While stylable, the checkout process has severe structural limitations that cannot be customized beyond basic styling - no saved addresses, limited payment methods, and minimal custom fields.</p>
+          </div>
+        </section>
+
+        <h3>Implementation Reality Check</h3>
         <div class="card">
           <h4 class="card-title">Adaptations Required for Webflow Implementation</h4>
           <p>If choosing the Webflow option, these adaptations will be necessary:</p>
@@ -1351,44 +1551,167 @@
               <li>Order confirmation and notifications using standard templates</li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div id="shopify" class="tab-content">
+        <section class="section" id="shopify-overview">
+          <h2>Shopify Headless + Next.js Implementation</h2>
           
-          <p>The Medusa.js option can fully implement the original design with all planned features intact.</p>
-        </div>
-        
-        <p style="margin-top: 32px;">To ensure successful implementation with either approach:</p>
-        
-        <div class="card">
-          <h4 class="card-title">1. Early Infrastructure Setup</h4>
-          <ul>
-            <li>Complete hosting configuration in first week</li>
-            <li>Ensure development environments match production</li>
-          </ul>
-        </div>
-        
-        <div class="card">
-          <h4 class="card-title">2. Prioritize Core User Journey</h4>
-          <ul>
-            <li>Focus on product browsing → cart → checkout flow first</li>
-            <li>Ensure payment methods work flawlessly</li>
-          </ul>
-        </div>
-        
-        <div class="card">
-          <h4 class="card-title">3. Parallel Development Tracks</h4>
-          <ul>
-            <li>Frontend styling can progress alongside backend integration</li>
-            <li>Custom features can be developed in parallel with core pages</li>
-          </ul>
-        </div>
-        
-        <div class="card">
-          <h4 class="card-title">4. Weekly Progress Milestones</h4>
-          <ul>
-            <li>Set specific completion targets for each feature</li>
-            <li>Regular testing of completed components</li>
-          </ul>
-        </div>
-      </section>
+          <div class="card">
+            <p><strong>Project Goal:</strong> Implement the ORE-ORE-ORE e-commerce website using Shopify's Headless Commerce platform with Next.js frontend.</p>
+            <p><strong>Design Style:</strong> 00's aesthetic with custom Next.js components</p>
+            <!-- <p><strong>Budget Estimate:</strong> $7,500 for development</p> -->
+            <p><strong>Timeline:</strong> 6-8 weeks for complete implementation</p>
+          </div>
+
+          <h3>Core Capabilities</h3>
+          <div class="shopify-feature-grid">
+            <div class="shopify-feature-card">
+              <h4 class="shopify-feature-title">Product & Inventory</h4>
+              <ul class="shopify-feature-list">
+                <li>Advanced variant management (up to 100 variants per product)</li>
+                <li>Real-time inventory sync across channels</li>
+                <li>Bulk product updates and imports</li>
+                <li>Custom product fields and metafields</li>
+                <li>Multiple price lists and currencies</li>
+                <li>Product bundles and collections</li>
+              </ul>
+            </div>
+            
+            <div class="shopify-feature-card">
+              <h4 class="shopify-feature-title">Order Management</h4>
+              <ul class="shopify-feature-list">
+                <li>Automated order processing</li>
+                <li>Split orders and partial fulfillment</li>
+                <li>Multiple fulfillment locations</li>
+                <li>Custom order status workflows</li>
+                <li>Automated shipping rates</li>
+                <li>Return and refund management</li>
+              </ul>
+            </div>
+            
+            <div class="shopify-feature-card">
+              <h4 class="shopify-feature-title">Customer Features</h4>
+              <ul class="shopify-feature-list">
+                <li>Customer groups and segmentation</li>
+                <li>Customer-specific pricing</li>
+                <li>Saved payment methods</li>
+                <li>Multiple addresses per customer</li>
+                <li>Order history and reordering</li>
+                <li>Wishlist functionality (via app)</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Custom Development Possibilities</h3>
+          <div class="card">
+            <h4 class="card-title">What We Can Customize</h4>
+            <ul>
+              <li><strong>Frontend Experience:</strong> Complete control over UI/UX with Next.js</li>
+              <li><strong>Checkout Flow:</strong> Custom multi-step checkout (requires Shopify Plus)</li>
+              <li><strong>Search & Filtering:</strong> Advanced product search with Algolia or similar</li>
+              <li><strong>Authentication:</strong> Social login integration possible</li>
+              <li><strong>Content Management:</strong> Headless CMS integration for rich content</li>
+              <li><strong>Payment Methods:</strong> Multiple payment gateway support</li>
+              <li><strong>Shipping Logic:</strong> Custom shipping rules and calculations</li>
+              <li><strong>Internationalization:</strong> Multi-language and multi-currency support</li>
+            </ul>
+          </div>
+
+          <h3>Technical Limitations</h3>
+          <div class="card">
+            <h4 class="card-title">Key Constraints to Consider</h4>
+            <ul>
+              <li><strong>API Rate Limits:</strong>
+                <ul>
+                  <li>Basic: 2 requests/second</li>
+                  <li>Standard: 4 requests/second</li>
+                  <li>Plus: 10 requests/second</li>
+                </ul>
+              </li>
+              <li><strong>Checkout Customization:</strong>
+                <ul>
+                  <li>Basic/Standard: Limited to Shopify's checkout</li>
+                  <li>Plus: Custom checkout possible but complex</li>
+                </ul>
+              </li>
+              <li><strong>Data Structure:</strong>
+                <ul>
+                  <li>Fixed product/customer data models</li>
+                  <li>Limited metafield types</li>
+                  <li>Predefined order workflows</li>
+                </ul>
+              </li>
+              <li><strong>Real-time Operations:</strong>
+                <ul>
+                  <li>Limited webhook capabilities</li>
+                  <li>No real-time inventory updates</li>
+                  <li>Delayed data synchronization</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <h3>Implementation Considerations</h3>
+          <div class="card">
+            <h4 class="card-title">Architecture Decisions</h4>
+            
+            <div style="margin-bottom: 24px;">
+              <strong>1. Data Synchronization Strategy</strong>
+              <ul>
+                <li>Implement caching layer for product data</li>
+                <li>Use webhooks for inventory updates</li>
+                <li>Build queue system for API rate limiting</li>
+                <li>Consider hybrid storage for custom data</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 24px;">
+              <strong>2. Custom Feature Implementation</strong>
+              <ul>
+                <li>External database for extended features</li>
+                <li>Separate service for complex calculations</li>
+                <li>Custom middleware for authentication</li>
+                <li>CDN for media optimization</li>
+              </ul>
+            </div>
+            
+            <div style="margin-bottom: 24px;">
+              <strong>3. Performance Optimization</strong>
+              <ul>
+                <li>Implement aggressive caching</li>
+                <li>Use static generation where possible</li>
+                <li>Build efficient API polling strategies</li>
+                <li>Optimize for mobile-first delivery</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>Required External Services</h3>
+          <div class="pricing-options">
+            <div class="pricing-option">
+              <h4 class="pricing-title">Core Infrastructure</h4>
+              <ul>
+                <li>Vercel for Next.js hosting</li>
+                <li>Redis for caching</li>
+                <li>PostgreSQL for custom data</li>
+                <li>CDN for media delivery</li>
+              </ul>
+            </div>
+            
+            <div class="pricing-option">
+              <h4 class="pricing-title">Optional Enhancements</h4>
+              <ul>
+                <li>Algolia for advanced search</li>
+                <li>Contentful for CMS</li>
+                <li>Auth0 for authentication</li>
+                <li>Segment for analytics</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 
@@ -1397,5 +1720,24 @@
       <p class="copyright">© 2023 ATWWW® • THE ARTISAN OF TOMORROW</p>
     </div>
   </footer>
+
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      
+      tablinks = document.getElementsByClassName("tab-button");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
 </body>
 </html> 
